@@ -15,7 +15,7 @@ class CreateProcurementsTable extends Migration
     {
         Schema::create('procurements', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('identifier', 6)->nullable();
+            $table->string('identifier', 8)->nullable();
             $table->string('customer', 255);
             $table->string('id_procurement', 25)->unique();
             $table->dateTime('offers_period_end');
@@ -27,6 +27,7 @@ class CreateProcurementsTable extends Migration
 
             $table->unsignedInteger('users_id')->nullable();
             $table->unsignedInteger('statuses_id')->default(1);
+            $table->unsignedInteger('procurement_statuses_id')->nullable();
             $table->unsignedInteger('subjects_id')->nullable();
             $table->unsignedInteger('types_id')->nullable();
 
@@ -34,6 +35,7 @@ class CreateProcurementsTable extends Migration
             $table->foreign('users_id')->references('id')->on('users');
             $table->foreign('subjects_id')->references('id')->on('subjects');
             $table->foreign('statuses_id')->references('id')->on('statuses');
+            $table->foreign('procurement_statuses_id')->references('id')->on('procurement_statuses');
             $table->foreign('types_id')->references('id')->on('types');
         });
     }

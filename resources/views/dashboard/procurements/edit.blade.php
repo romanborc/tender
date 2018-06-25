@@ -50,14 +50,14 @@
                 <label class="col-sm-2 col-sm-2 control-label">Ожидаемая стоимость</label>
                 <div class="col-sm-8">
                     <input type="number" step="any" class="form-control" name="amount" id="amount" placeholder="" value="{{ old('amount') }}"> <span class="help-block">
-                        <strong><p class="amount"></p></strong>
+                        <strong><p class="amounts"></p></strong>
                     </span>
                 </div>
             </div>
             <div class="form-group row {{ $errors->has('users_id') ? ' has-error' : '' }}">
                 <label class="col-sm-2 col-sm-2 control-label">Ответственный Менеджер</label>
                 <div class="col-sm-8">
-                    <select class="form-control" name="users_id" id="users_id">
+                    <select class="form-control" name="users_id" id="users">
                         
                         @foreach($users as $user)
                             <option value="{{ $user->id }}">
@@ -73,7 +73,7 @@
             <div class="form-group row {{ $errors->has('subjects_id') ? ' has-error' : '' }}">
                 <label class="col-sm-2 col-sm-2 control-label">Предмет Закупки</label>
                 <div class="col-sm-8">
-                    <select class="form-control" name="subjects_id" id="subjects_id">
+                    <select class="form-control" name="subjects_id" id="subjects">
                         @foreach($subjects as $subject)
                             <option value="{{ $subject->id }}">
                                 {{$subject->subject}}
@@ -88,7 +88,7 @@
             <div class="form-group row {{ $errors->has('types_id') ? ' has-error' : '' }}">
                 <label class="col-sm-2 col-sm-2 control-label">Тип Закупки</label>
                 <div class="col-sm-8">
-                    <select class="form-control" name="types_id" id="types_id">
+                    <select class="form-control" name="types_id" id="types">
                          @foreach($types as $type)
                             <option value="{{ $type->id }}">
                                 {{$type->type}}
@@ -110,9 +110,9 @@
                 </div>
             </div>
             <div class="form-group row {{ $errors->has('types_id') ? ' has-error' : '' }}">
-                <label class="col-sm-2 col-sm-2 control-label">Тип Закупки</label>
+                <label class="col-sm-2 col-sm-2 control-label">Статус</label>
                 <div class="col-sm-8">
-                    <select class="form-control" name="statuses_id" id="statuses_id">
+                    <select class="form-control" name="statuses_id" id="statuses">
                          @foreach($statuses as $status)
                             <option value="{{ $status->id }}">
                                 {{$status->status}}

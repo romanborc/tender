@@ -33,6 +33,11 @@ class Procurement extends Model
         return $this->belongsTo('App\Models\Status');
     }
 
+    public function procurement_statuses()
+    {
+        return $this->belongsTo('App\Models\ProcurementStatus');
+    }
+
     public function subjects()
     {
         return $this->belongsTo('App\Models\Subject');

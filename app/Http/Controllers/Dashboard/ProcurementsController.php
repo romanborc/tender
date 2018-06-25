@@ -10,6 +10,7 @@ use App\Models\Type;
 use App\Models\Result;
 use App\Models\Participant;
 use App\Models\Status;
+use App\Models\ProcurementStatus;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -32,8 +33,9 @@ class ProcurementsController extends Controller
         $subjects = Subject::all();
         $types = Type::all();
         $statuses = Status::all();
+        $procurement_statuses = ProcurementStatus::all();
 
-        return view('dashboard.procurements.index', compact('procurements', 'participants', 'users', 'types', 'subjects', 'statuses', 'search'));
+        return view('dashboard.procurements.index', compact('procurements', 'participants', 'users', 'types', 'subjects', 'statuses', 'procurement_statuses', 'search'));
     }
 
     public function create()
@@ -101,6 +103,7 @@ class ProcurementsController extends Controller
         if($validator->fails()) {
             return response()->json(['errors'=>$validator->errors()]);
         } else {
+
             Procurement::find($request->id)->update([
                 'customer' => $request->customer,
                 'id_procurement' => $request->id_procurement,
@@ -114,12 +117,12 @@ class ProcurementsController extends Controller
                 'statuses_id' => $request->statuses_id,
                 'description' => $request->description
             ]);
+            
         }
     }
 
     public function destroy($id)
     {
-        dd($id);
         Procurement::find($id)->delete();
         return redirect("/admin");
     }

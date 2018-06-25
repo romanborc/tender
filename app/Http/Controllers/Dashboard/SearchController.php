@@ -85,4 +85,16 @@ class SearchController extends Controller
             "statuses" => $statuses
         ]); 
     }
+
+    public function searchParticipants (Request $request)
+    {
+       	$results = Participant::where('name', 'LIKE', '%' .request('results')."%")->get();
+
+    	return response()->json($results->map(function ($result) {
+	        return [
+	            'value'    => $result->id,
+	            'label' => $result->name,
+	        ];
+    	})); 
+    }
 }

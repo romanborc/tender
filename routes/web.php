@@ -19,9 +19,6 @@ Route::get('/', function () {
 	return view('auth.login');
 });
 
-
-
-
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 	Route::get('/', "Dashboard\ProcurementsController@index");
 	Route::get('procurements/create', "Dashboard\ProcurementsController@create");
@@ -30,18 +27,23 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 		'as' => 'delete_procurement',
 		'uses' => 'Dashboard\ProcurementsController@destroy'
 	]);
-	Route::get('/procurements/{id}', "Dashboard\ResultsController@show");
+	Route::post('/search', 'Dashboard\SearchController@filter');
+	Route::get('/search/participants', 'Dashboard\SearchController@searchParticipants');
+	Route::get('/results', "Dashboard\ResultsController@get");
 
+	Route::get('/users', "Dashboard\UsersController@index");
+	Route::get('/calendar', "Dashboard\CalendarController@index");
+
+
+	/* --================ API =============-- */
+	Route::get('/procurements/{id}', "Dashboard\ResultsController@show");
+	Route::post('/results', "Dashboard\ResultsController@updateOrCreate");
 	Route::get('/edit/{id}', "Dashboard\ProcurementsController@edit");
 	Route::post('/procurement', "Dashboard\ProcurementsController@update");
-
-	Route::post('/search', 'Dashboard\SearchController@filter');
-
-	Route::get('/results', "Dashboard\ResultsController@get");
-	Route::post('/results', "Dashboard\ResultsController@updateOrCreate");
-
-	Route::get('/users', "Dashboard\UsersController@index");	
+	Route::get('/getevents', "Dashboard\CalendarController@getEvents");
 });
+
+
 
 Route::group(['prefix' => 'manager', 'middleware' => 'manager'], function() {
 	Route::get('/', "Base\BaseController@index");	

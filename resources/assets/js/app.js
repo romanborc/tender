@@ -7,3 +7,5 @@
 
 require('./bootstrap');
 require('./main');
+require('./autocomplete');
+require('./calendar');
