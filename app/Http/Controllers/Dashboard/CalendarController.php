@@ -20,7 +20,6 @@ class CalendarController extends Controller
     		return [
     			'title' => $event->id_procurement,
     			'start' => $event->auction_period_end,
-    			'end' => $event->auction_period_end,
     			'url' => "https://zakupki.prom.ua/gov/tenders/" . $event->id_procurement,
     		];
     	}));

@@ -81,9 +81,10 @@
                     <p class="result">{{ $result->results }}</p>
                     <!--<h3>Выиграл по цене :</h3>
                     <p class="participant">{{ $result->wonByPrice->name }}</p>
+                    -->
                     <h3>Выиграл Закупку</h3>
                     <p class="participant">{{ $result->winners->name }}</p>
-                    -->
+                    
                     @endforeach
                 </td>
             </tr>

@@ -11,6 +11,7 @@ $(document).ready(function() {
             eventLimit: 6,
             events: data,
             height: 700,
+            
             eventClick: function(event) {
                 if (event.url) {
                     window.open(event.url, "_blank");

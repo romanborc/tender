@@ -13,6 +13,7 @@ use App\Models\Status;
 use App\Models\ProcurementStatus;
 use App\User;
 use Carbon\Carbon;
+use App\Mail\MailSendProcurement;
 use Illuminate\Support\Facades\Validator;
 
 class ProcurementsController extends Controller
@@ -65,8 +66,12 @@ class ProcurementsController extends Controller
         if($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
-            
-            Procurement::create([
+            if($request->users_id != null)
+            {
+                $user = User::find($request->users_id);
+                \Mail::to($user)->send(new MailSendProcurement($request));
+
+                Procurement::create([
                 'customer' => $request->customer,
                 'id_procurement' => $request->id_procurement,
                 'offers_period_end' => Carbon::parse($request->offers_period_end)->format('Y-m-d H:i'),
@@ -78,7 +83,23 @@ class ProcurementsController extends Controller
                 'identifier' => $request->identifier,
                 'description' => $request->description
             ]);
-            return redirect("/admin");
+                return redirect("/admin");
+            } else {
+                Procurement::create([
+                'customer' => $request->customer,
+                'id_procurement' => $request->id_procurement,
+                'offers_period_end' => Carbon::parse($request->offers_period_end)->format('Y-m-d H:i'),
+                'auction_period_end' => ($request->auction_period_end != null) ? Carbon::parse($request->auction_period_end)->format('Y-m-d H:i') : null,
+                'amount' => $request->amount,
+                'users_id' => $request->users_id,
+                'subjects_id' => $request->subjects_id,
+                'types_id' => $request->types_id,
+                'identifier' => $request->identifier,
+                'description' => $request->description
+            ]);
+                return redirect("/admin");
+            }
+            
         }
     }
 

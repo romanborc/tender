@@ -19,7 +19,7 @@ class CreateProcurementsTable extends Migration
             $table->string('customer', 255);
             $table->string('id_procurement', 25)->unique();
             $table->dateTime('offers_period_end');
-            $table->datetime('auction_period_end');
+            $table->datetime('auction_period_end')->nullable();
             $table->timestamp('created_at');
             $table->float('amount', 15, 2);
             $table->text('description')->nullable();
