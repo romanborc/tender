@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInDown">
-	<div class="row">
+    <div class="row">
             <div class="col-lg-3">
                 <div class="widget style1">
                         <div class="row">
@@ -100,7 +100,7 @@
                 </div>
             </div>
         </div>
-	<div class="row">
+    <div class="row">
                 <div class="col-lg-4">
                     <div class="widget style1 lazur-bg">
                         <div class="row vertical-align">
