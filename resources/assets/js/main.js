@@ -47,8 +47,8 @@ $(document).on('click', '.edit', function() {
         $("#procurement_id").val(data.id);
         $("#customer").val(data.customer);
         $("#id_procurement").val(data.id_procurement);
-        $("#offers_period_end").val(data.offers_period_end);
-        $("#auction_period_end").val(data.auction_period_end);
+        $("#offers_period_end").val(moment(data.offers_period_end).format('DD-MM-YYYY HH:mm'));
+        $("#auction_period_end").val(moment(data.auction_period_end).format('DD-MM-YYYY HH:mm'));
         $("#amount").val(data.amount);
         $("#users").val(data.users_id);
         $("#subjects").val(data.subjects_id);

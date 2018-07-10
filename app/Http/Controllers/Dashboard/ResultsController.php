@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Validator;
 
 class ResultsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function get()
     {
     	$results = Result::with('participants')->get();

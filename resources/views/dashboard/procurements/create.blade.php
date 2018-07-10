@@ -27,7 +27,7 @@
             <div class="form-group row {{ $errors->has('offers_period_end') ? ' has-error' : '' }}">
                 <label class="col-sm-2 col-sm-2 control-label">Подать до</label>
                 <div class="col-sm-8">
-                    <input type="datetime" class="form-control" name="offers_period_end" data-mask="9999-99-99 99:99" placeholder="" value="{{ old('offers_period_end') }}"> @if ($errors->has('offers_period_end'))
+                    <input type="datetime" class="form-control" name="offers_period_end" data-mask="99-99-9999 99:99" placeholder="" value="{{ old('offers_period_end') }}"> @if ($errors->has('offers_period_end'))
                     <span class="help-block">
                         <strong>{{ $errors->first('offers_period_end') }}</strong>
                     </span> @endif
@@ -36,7 +36,7 @@
             <div class="form-group row {{ $errors->has('auction_period_end') ? ' has-error' : '' }}">
                 <label class="col-sm-2 col-sm-2 control-label">Время аукциона</label>
                 <div class="col-sm-8">
-                    <input type="datetime" class="form-control" name="auction_period_end" data-mask="9999-99-99 99:99" placeholder="" value="{{ old('auction_period_end') }}"> @if ($errors->has('auction_period_end'))
+                    <input type="datetime" class="form-control" name="auction_period_end" data-mask="99-99-9999 99:99" placeholder="" value="{{ old('auction_period_end') }}"> @if ($errors->has('auction_period_end'))
                     <span class="help-block">
                         <strong>{{ $errors->first('auction_period_end') }}</strong>
                     </span> @endif

@@ -14,6 +14,11 @@ use App\User;
 
 class SearchController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function filter(Request $request, Procurement $procurements)
     {
     	$participants = Participant::all();
@@ -28,7 +33,7 @@ class SearchController extends Controller
     		$procurements->where('id_procurement', $request->input('id_procurement'));
     	}
 
-    	if ($request->filled('offers_period_from')<>'' && $request->filled('offers_period_to')<>'')
+    	if ($request->filled('offers_period_from') && $request->filled('offers_period_to')<>'')
     	{    
 	        $start = date("Y-m-d",strtotime($request->input('offers_period_from')));
 	        $end = date("Y-m-d",strtotime($request->input('offers_period_to')."+1 day"));
@@ -72,8 +77,7 @@ class SearchController extends Controller
 	    if ($request->filled('types_id'))
     	{    
 	        $procurements->where('types_id', $request->input('types_id'));
-	    }
-    	
+	    }    	
 
     	return view('dashboard.procurements.index', [
             "procurements" => $procurements->paginate(10),

@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app') @section('content')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-    <h1 class="h2">Панель Управления Администратора</h1>
+    <h2 class="h2">Панель Управления Администратора</h2>
 </div>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-9 ">

@@ -70,36 +70,14 @@ class ProcurementsController extends Controller
             {
                 $user = User::find($request->users_id);
                 \Mail::to($user)->send(new MailSendProcurement($request));
-
-                Procurement::create([
-                'customer' => $request->customer,
-                'id_procurement' => $request->id_procurement,
-                'offers_period_end' => Carbon::parse($request->offers_period_end)->format('Y-m-d H:i'),
-                'auction_period_end' => ($request->auction_period_end != null) ? Carbon::parse($request->auction_period_end)->format('Y-m-d H:i') : null,
-                'amount' => $request->amount,
-                'users_id' => $request->users_id,
-                'subjects_id' => $request->subjects_id,
-                'types_id' => $request->types_id,
-                'identifier' => $request->identifier,
-                'description' => $request->description
-            ]);
+                
+                $this->addNewProcurements($request);
                 return redirect("/admin");
+
             } else {
-                Procurement::create([
-                'customer' => $request->customer,
-                'id_procurement' => $request->id_procurement,
-                'offers_period_end' => Carbon::parse($request->offers_period_end)->format('Y-m-d H:i'),
-                'auction_period_end' => ($request->auction_period_end != null) ? Carbon::parse($request->auction_period_end)->format('Y-m-d H:i') : null,
-                'amount' => $request->amount,
-                'users_id' => $request->users_id,
-                'subjects_id' => $request->subjects_id,
-                'types_id' => $request->types_id,
-                'identifier' => $request->identifier,
-                'description' => $request->description
-            ]);
+                $this->addNewProcurements($request);
                 return redirect("/admin");
             }
-            
         }
     }
 
@@ -128,8 +106,8 @@ class ProcurementsController extends Controller
             Procurement::find($request->id)->update([
                 'customer' => $request->customer,
                 'id_procurement' => $request->id_procurement,
-                'offers_period_end' => $request->offers_period_end,
-                'auction_period_end' => ($request->auction_period_end != null) ? $request->auction_period_end : null,
+                'offers_period_end' => Carbon::parse($request->offers_period_end)->format('Y-m-d H:i'),
+                'auction_period_end' => ($request->auction_period_end != null) ? Carbon::parse($request->auction_period_end)->format('Y-m-d H:i') : null,
                 'amount' => $request->amount,
                 'users_id' => $request->users_id,
                 'subjects_id' => $request->subjects_id,
@@ -146,6 +124,22 @@ class ProcurementsController extends Controller
     {
         Procurement::find($id)->delete();
         return redirect("/admin");
+    }
+
+    private function addNewProcurements(Request $request) 
+    {
+        Procurement::create([
+            'customer' => $request->customer,
+            'id_procurement' => $request->id_procurement,
+            'offers_period_end' => Carbon::parse($request->offers_period_end)->format('Y-m-d H:i'),
+            'auction_period_end' => ($request->auction_period_end != null) ? Carbon::parse($request->auction_period_end)->format('Y-m-d H:i') : null,
+            'amount' => $request->amount,
+            'users_id' => $request->users_id,
+            'subjects_id' => $request->subjects_id,
+            'types_id' => $request->types_id,
+            'identifier' => $request->identifier,
+            'description' => $request->description
+        ]);
     }
 
 

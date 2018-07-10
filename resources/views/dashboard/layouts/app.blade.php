@@ -10,12 +10,13 @@
     <link rel="stylesheet" href="/bower_components/fullcalendar/dist/fullcalendar.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="/bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
 </head>
 
 <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/admin">Tender</a>
-        <form class="form-control-dark w-100" action="admin/">
+        <form class="form-control-dark w-100" action="/admin/">
             <input class="form-control form-control-dark w-100" type="text" placeholder="Search" name="search" aria-label="Search" value="{{ isset($search) ? $search : '' }}">
         </form>
         <ul class="navbar-nav px-3">
@@ -63,7 +64,7 @@
                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::is('statistics') ? 'active' : '' }}" href="statistics">
+                                <a class="nav-link {{ Request::is('admin/statistic') ? 'active' : '' }}" href="/admin/statistic">
                   <span data-feather="bar-chart-2"></span> 
                   Статистика
                 </a>
@@ -74,13 +75,22 @@
                   Заказчики
                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ Request::is('reports') ? 'active' : '' }}" href="reports">
-                  <span data-feather="file"></span>
-                  Отчеты
-                </a>
-                            </li>
-                    </ul>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('reports') ? 'active' : '' }}" href="reports">
+                      <span data-feather="file"></span>
+                      Отчеты
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link {{ Request::is('customers') ? 'active' : '' }}"  data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-desktop"></i> <span class="nav-label">App Views</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
+                    
+                    <ul class="nav-second-level collapse" id="collapseExample">
+                        <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
+                        <li class="nav-item"><a href="profile.html" class="nav-link">Profile</a></li>
+                        <li class="nav-item"><a href="profile_2.html" class="nav-link">Profile v.2</a></li>
+                        <li class="nav-item"><a href="contacts_2.html" class="nav-link">Contacts v.2</a></li>
+                    </ul> 
+                </li>
                 </div>
             </nav>
             <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
@@ -95,8 +105,6 @@
             autoclose: true,
             todayHighlight: true
         });
-
-        
         </script>
     </div>
 </body>

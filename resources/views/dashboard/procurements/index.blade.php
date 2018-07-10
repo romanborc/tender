@@ -11,7 +11,7 @@
     </div>
     <div class="col-md-3">
         <a href="#" class="btn btn-info btn-rounded" data-toggle="modal" data-target=".bd-filter-modal-lg">Фильтры</a>
-        <a href="admin/procurements/create" class="btn btn-primary btn-rounded">+ Добавить Закупку</a>
+        <a href="/admin/procurements/create" class="btn btn-primary btn-rounded">+ Добавить Закупку</a>
     </div>
 </div>
 <div class="table-responsive animated fadeInRight">
@@ -33,7 +33,7 @@
                     <a href="#" class="edit" data-id="{{ $procurement->id }}" data-toggle="modal" data-target=".bd-edit-modal-lg">{{ $procurement->subjects->subject }}
                     </a>
                     <div class="type">
-                        <a href="https://zakupki.prom.ua/gov/tenders/{{ $procurement->id_procurement }}" target="_blank">
+                        <a href="https://my.zakupki.prom.ua/cabinet/purchases/state_purchase/search/all?q={{ $procurement->id_procurement }}" target="_blank">
                             <p class="id_procurement">{{ $procurement->id_procurement }}</p>
                         </a>
                     </div>
@@ -91,7 +91,7 @@
             @endforeach
         </tbody>
     </table>
-    {{ $procurements->appends(['search' => $search])->links() }}
+    {{ $procurements->appends(Request::except('page'))->links() }}
 </div>
 
 

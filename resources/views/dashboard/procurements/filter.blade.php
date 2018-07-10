@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="/admin/search">
+                <form class="form-horizontal" method="get" action="/admin/search">
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="col-sm-4">
@@ -61,10 +61,10 @@
                         </div>
                         <div class="col-sm-8">
                             <select class="form-control" name="users_id" id="users_id">
-                                <option value="" selected>Выбери Менеджера</option>
+                                <option form-control" name="amount" placeholder="" value="" selected>Выбери Менеджера</option>
                                 <option value="null">Не определен</option>
                                 @foreach($users as $user)
-                                <option value="{{ $user->id }}">
+                                <option value="{{ old('user->id') }}">
                                     {{ $user->lastname }}
                                 </option>
                                 @endforeach

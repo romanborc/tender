@@ -1,5 +1,6 @@
 
 <script src="{{ asset('js/app.js') }}"></script>
+
 <script src="/bower_components/jquery-ui/jquery-ui.js"></script>
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>feather.replace()</script>

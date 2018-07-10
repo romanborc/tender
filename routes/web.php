@@ -27,12 +27,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 		'as' => 'delete_procurement',
 		'uses' => 'Dashboard\ProcurementsController@destroy'
 	]);
-	Route::post('/search', 'Dashboard\SearchController@filter');
+	Route::get('/search', 'Dashboard\SearchController@filter');
 	Route::get('/search/participants', 'Dashboard\SearchController@searchParticipants');
 	Route::get('/results', "Dashboard\ResultsController@get");
 
 	Route::get('/users', "Dashboard\UsersController@index");
 	Route::get('/calendar', "Dashboard\CalendarController@index");
+	Route::get('/statistic', 'Dashboard\StatisticController@index');
 
 
 	/* --================ API =============-- */

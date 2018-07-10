@@ -11,7 +11,7 @@
         </ol>
     </div>
 </div>
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content animated fadeInDown">
     <div class="row">
         @foreach($users as $user)
         <div class="col-lg-4">

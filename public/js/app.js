@@ -13677,7 +13677,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(11);
-module.exports = __webpack_require__(38);
+module.exports = __webpack_require__(39);
 
 
 /***/ }),
@@ -13694,7 +13694,7 @@ module.exports = __webpack_require__(38);
 __webpack_require__(12);
 __webpack_require__(36);
 __webpack_require__(37);
-__webpack_require__(43);
+__webpack_require__(38);
 
 /***/ }),
 /* 12 */
@@ -35960,8 +35960,8 @@ $(document).on('click', '.edit', function () {
         $("#procurement_id").val(data.id);
         $("#customer").val(data.customer);
         $("#id_procurement").val(data.id_procurement);
-        $("#offers_period_end").val(data.offers_period_end);
-        $("#auction_period_end").val(data.auction_period_end);
+        $("#offers_period_end").val(moment(data.offers_period_end).format('DD-MM-YYYY HH:mm'));
+        $("#auction_period_end").val(moment(data.auction_period_end).format('DD-MM-YYYY HH:mm'));
         $("#amount").val(data.amount);
         $("#users").val(data.users_id);
         $("#subjects").val(data.subjects_id);
@@ -36058,16 +36058,6 @@ $(document).ready(function () {
 /* 38 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */
-/***/ (function(module, exports) {
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 $(document).ready(function () {
@@ -36090,6 +36080,12 @@ $(document).ready(function () {
         }), _$$fullCalendar));
     });
 });
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
