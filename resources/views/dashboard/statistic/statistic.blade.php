@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-sm-8 text-right">
                             <span> Сегодня выиграли торгов  </span>
-                            <h2 class="font-bold">20</h2>
+                            <h2>20</h2>
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                         </div>
                         <div class="col-sm-8 text-right">
                             <span> Сегодня проиграли торгов </span>
-                            <h2 class="font-bold">6</h2>
+                            <h2>6</h2>
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                                 <i class="fa fa-user fa-3x"></i>
                             </div>
                             <div class="col-sm-10 text-right">
-                                <h2 class="font-bold">16</h2>
+                                <h2>16</h2>
                                 <h4>Количество менеджеров</h4>
                                 <button type="button" class="btn btn-outline btn-default">Подробней</button>
                             </div>
@@ -122,7 +122,7 @@
                                 <i class="fa fa-percent fa-3x"></i>
                             </div>
                             <div class="col-sm-9 text-right">
-                                <h2 class="font-bold">65</h2>
+                                <h2>65</h2>
                                 <h4>Побед за все время</h4>
                                 <button type="button" class="btn btn-outline btn-default">Подробней</button>
                             </div>
@@ -136,7 +136,7 @@
                                 <i class="fa fa-percent fa-3x"></i>
                             </div>
                             <div class="col-sm-9 text-right">
-                                <h2 class="font-bold">10</h2>
+                                <h2>10</h2>
                                 <h4>Не участия за все время</h4>
                                 <button type="button" class="btn btn-outline btn-default">Подробней</button>
                             </div>

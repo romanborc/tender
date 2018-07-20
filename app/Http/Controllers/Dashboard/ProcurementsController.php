@@ -11,6 +11,7 @@ use App\Models\Result;
 use App\Models\Participant;
 use App\Models\Status;
 use App\Models\ProcurementStatus;
+use App\Models\ProcurementsDeteil;
 use App\User;
 use Carbon\Carbon;
 use App\Mail\MailSendProcurement;
@@ -128,7 +129,7 @@ class ProcurementsController extends Controller
 
     private function addNewProcurements(Request $request) 
     {
-        Procurement::create([
+        $procurement = Procurement::create([
             'customer' => $request->customer,
             'id_procurement' => $request->id_procurement,
             'offers_period_end' => Carbon::parse($request->offers_period_end)->format('Y-m-d H:i'),
@@ -140,7 +141,24 @@ class ProcurementsController extends Controller
             'identifier' => $request->identifier,
             'description' => $request->description
         ]);
+        
+        if($procurement)
+        {
+            $this->addNewLots($request, $procurement);
+        }   
     }
 
+    private function addNewLots(Request $request, $procurement)
+    {
+        $details = $request->details;
+        foreach ($details as $key => $value) {
+            if($value['offers_period_end_lot'])
+            $data = ProcurementsDeteil::create([
+                'offers_period_end_lot' => Carbon::parse($value['offers_period_end_lot'])->format('Y-m-d H:i'),
+                'auction_period_end_lot' => Carbon::parse($value['auction_period_end_lot'])->format('Y-m-d H:i'),
+                'procurement_id' => $procurement->id,
+            ]);                
+        }        
+    }
 
 }

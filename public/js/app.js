@@ -35917,6 +35917,44 @@ $('.results').click(function () {
     $('.bd-results-modal-lg').modal('show');
 });
 
+/* --======= For block Create lot ========-- */
+
+$(".add_lot").click(function () {
+    $(".create_lot").toggle();
+});
+
+$(".back").click(function () {
+    $(".create_lot").hide();
+});
+
+var count = 1;
+$(document).on('click', '.add', function () {
+    count++;
+    var htmlAppend = '<div class="row" id="row' + count + '"><div class="col-lg-11"><div class="title"><h1>Лот №' + count + '</h1></div><div class="form-group row"><label class="col-sm-4 control-label">Подать до</label><div class="col-sm-8"><input type="datetime" class="form-control" name="details[' + count + '][offers_period_end_lot]" data-mask="99-99-9999 99:99" placeholder="" value=""></div></div><div class="form-group row"><label class="col-sm-4 control-label">Время аукциона</label><div class="col-sm-8"><input type="datetime" class="form-control" name="details[' + count + '][auction_period_end_lot]" data-mask="99-99-9999 99:99" placeholder="" value=""></div></div></div><div class="col-lg-1"><a href="#" class="remove" data-id="' + count + '"><i class="fas fa-times fa-2x"></i></a><a href="#" class="add"><i class="fas fa-plus fa-2x"></i></a></div></div><div class="hr-lot"></div></div>';
+    $(".tree").append(htmlAppend);
+    localStorage.setItem("htmlAppend", htmlAppend);
+});
+
+$(document).on('click', '.save', function () {
+    var data = {};
+    $("input[name=details]").serializeArray().map(function (i) {
+        data[i.name] = i.value;
+    });
+    console.log(data);
+});
+
+var htmlAppend = localStorage.getItem("htmlAppend");
+console.log(htmlAppend);
+if (htmlAppend) {
+    $(".tree").append(htmlAppend);
+}
+
+$(document).on('click', '.remove', function () {
+    var id = $(this).data('id');
+    $('#row' + id + '').remove();
+    $('.hr-lot').remove();
+});
+
 /* --================ CreateOrUpdate Results =============-- */
 $(document).on('click', '.results', function () {
     var id = $(this).data("id");

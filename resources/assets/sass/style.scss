@@ -776,6 +776,118 @@ fieldset[disabled] .btn-primary.active {
     border-color: #1dc5a3;
 }
 
+.btn-primary.btn-outline:hover,
+.btn-lot-primary.btn-outline:hover,
+.btn-lot-secondary.btn-outline:hover,
+.btn-success.btn-outline:hover,
+.btn-info.btn-outline:hover,
+.btn-warning.btn-outline:hover,
+.btn-danger.btn-outline:hover {
+    color: #fff;
+}
+
+.btn-lot-secondary {
+    display: block;
+    color: #fff;
+    width: 40%;
+    border: none;
+    background-color: #98463e;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    float: left;
+}
+
+.btn-lot-secondary:hover,
+.btn-lot-secondary:focus,
+.btn-lot-secondary:active,
+.btn-lot-secondary.active,
+.open .dropdown-toggle.btn-lot-secondary,
+.btn-lot-secondary:active:focus,
+.btn-lot-secondary:active:hover,
+.btn-lot-secondary.active:hover,
+.btn-lot-secondary.active:focus {
+    border-color: #18a689;
+    color: #FFFFFF;
+}
+
+.btn-lot-secondary:active,
+.btn-lot-secondary.active,
+.open .dropdown-toggle.btn-lot-secondary {
+    background-image: none;
+}
+
+.btn-lot-secondary.disabled,
+.btn-lot-secondary.disabled:hover,
+.btn-lot-secondary.disabled:focus,
+.btn-lot-secondary.disabled:active,
+.btn-lot-secondary.disabled.active,
+.btn-lot-secondary[disabled],
+.btn-lot-secondary[disabled]:hover,
+.btn-lot-secondary[disabled]:focus,
+.btn-lot-secondary[disabled]:active,
+.btn-lot-secondary.active[disabled],
+fieldset[disabled] .btn-lot-secondary,
+fieldset[disabled] .btn-lot-secondary:hover,
+fieldset[disabled] .btn-lot-secondary:focus,
+fieldset[disabled] .btn-lot-secondary:active,
+fieldset[disabled] .btn-lot-secondary.active {
+    background-color: #1dc5a3;
+    border-color: #1dc5a3;
+}
+
+.btn-lot-primary {
+    display: block;
+    color: #fff;
+    width: 60%;
+    border: none;
+    background-color: #212930;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    float: left;
+}
+
+.btn-lot-primary:hover,
+.btn-lot-primary:focus,
+.btn-lot-primary:active,
+.btn-lot-primary.active,
+.open .dropdown-toggle.btn-lot-primary,
+.btn-lot-primary:active:focus,
+.btn-lot-primary:active:hover,
+.btn-lot-primary.active:hover,
+.btn-lot-primary.active:focus {
+    border-color: #18a689;
+    color: #FFFFFF;
+}
+
+.btn-lot-primary:active,
+.btn-lot-primary.active,
+.open .dropdown-toggle.btn-lot-primary {
+    background-image: none;
+}
+
+.btn-lot-primary.disabled,
+.btn-lot-primary.disabled:hover,
+.btn-lot-primary.disabled:focus,
+.btn-lot-primary.disabled:active,
+.btn-lot-primary.disabled.active,
+.btn-lot-primary[disabled],
+.btn-lot-primary[disabled]:hover,
+.btn-lot-primary[disabled]:focus,
+.btn-lot-primary[disabled]:active,
+.btn-lot-primary.active[disabled],
+fieldset[disabled] .btn-lot-primary,
+fieldset[disabled] .btn-lot-primary:hover,
+fieldset[disabled] .btn-lot-primary:focus,
+fieldset[disabled] .btn-lot-primary:active,
+fieldset[disabled] .btn-lot-primary.active {
+    background-color: #1dc5a3;
+    border-color: #1dc5a3;
+}
+
 .btn-success {
     background-color: #1c84c6;
     border-color: #1c84c6;
@@ -10402,7 +10514,7 @@ body {
 
 .sidebar .nav-link {
     font-weight: 500;
-    color: #333;
+    color: #fff;
 }
 
 .sidebar .nav-link .feather {
@@ -10411,7 +10523,7 @@ body {
 }
 
 .sidebar .nav-link.active {
-    color: #007bff;
+    color: #1ab394;
 }
 
 .sidebar .nav-link:hover .feather,
@@ -10552,4 +10664,62 @@ textarea {
 
 .nav-second-level {
     list-style-type: none;
+}
+
+.navbar-dark .navbar-brand {
+    text-align: center;
+  letter-spacing: 1em;
+  overflow: hidden;
+}
+
+/* Create Lot */
+
+
+.create_lot {
+    width: 100%!important;
+    display: none;
+}
+
+.content {
+
+    background-color: #fff;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 2000;
+    width: 500px;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+}
+
+.tree {
+    overflow-y: auto;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    left: 0;
+    bottom: 61px;
+    border-style: solid 
+}
+
+.create_lot_footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.hr-lot {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.remove {
+    padding-left: 2px;
+    color: #000000;
+}
+
+.add {
+    color: #000000;
 }

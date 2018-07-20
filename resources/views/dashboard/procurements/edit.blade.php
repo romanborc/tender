@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal">
+            <form class="form-horizontal">
             {{ csrf_field() }}
             <div class="form-group row {{ $errors->has('customer') ? ' has-error' : '' }}">
                 <label class="col-sm-2 col-form-label">Заказчик</label>
