@@ -45,11 +45,8 @@ class ProcurementsController extends Controller
         $users = User::all();
         $subjects = Subject::all();
         $types = Type::all();
-        return view('dashboard.procurements.create', [
-                "users" => $users,
-                "subjects" => $subjects,
-                "types" => $types,
-        ]);
+        $statuses = Status::all();
+        return view('dashboard.procurements.create', compact('users', 'subjects', 'types', 'statuses'));
     }
 
     public function store(Request $request)
@@ -61,11 +58,14 @@ class ProcurementsController extends Controller
             'amount' => 'required|max:12',
             'subjects_id' => 'required',
             'types_id' => 'required',
-            'identifier' => 'max:8'
+            'identifier' => 'max:8',
+            'details.*.offers_period_end_lot' => 'date|nullable',
+            'details.*.auction_period_end_lot' => 'date|nullable',
+            'details.*.amount_lot' => 'max:12',
         ]);
 
         if($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            return response()->json(['errors'=>$validator->errors()]);
         } else {
             if($request->users_id != null)
             {
@@ -83,9 +83,9 @@ class ProcurementsController extends Controller
     }
 
     public function edit($id) {
-        $procurement = Procurement::with('users')->where('id', $id)->first(); 
-
-        return response()->json($procurement);
+        $procurement = Procurement::where('id', $id)->first(); 
+        $procurementDeteils = ProcurementsDeteil::where('procurement_id', $id)->get();
+        return response()->json(compact('procurement', 'procurementDeteils'));
     }
 
     public function update(Request $request)
@@ -97,13 +97,16 @@ class ProcurementsController extends Controller
             'amount' => 'required|max:12',
             'subjects_id' => 'required',
             'types_id' => 'required',
-            'identifier' => 'max:8'
+            'identifier' => 'max:8',
+            'details.*.name' => 'max:255',
+            'details.*.offers_period_end_lot' => 'date',
+            'details.*.auction_period_end_lot' => 'date',
+            'details.*.amount_lot' => 'max:12',
         ]);
 
         if($validator->fails()) {
             return response()->json(['errors'=>$validator->errors()]);
         } else {
-
             Procurement::find($request->id)->update([
                 'customer' => $request->customer,
                 'id_procurement' => $request->id_procurement,
@@ -117,14 +120,19 @@ class ProcurementsController extends Controller
                 'statuses_id' => $request->statuses_id,
                 'description' => $request->description
             ]);
-            
+
+            $this->updateOrCreateLot($request, $request); 
         }
     }
 
-    public function destroy($id)
+    public function deleteProcurements($id)
     {
         Procurement::find($id)->delete();
-        return redirect("/admin");
+    }
+
+    public function deleteLot($id)
+    {
+        ProcurementsDeteil::find($id)->delete();
     }
 
     private function addNewProcurements(Request $request) 
@@ -139,26 +147,34 @@ class ProcurementsController extends Controller
             'subjects_id' => $request->subjects_id,
             'types_id' => $request->types_id,
             'identifier' => $request->identifier,
-            'description' => $request->description
+            'statuses_id' => $request->statuses_id,
+            'description' => $request->description,
         ]);
         
         if($procurement)
         {
-            $this->addNewLots($request, $procurement);
+            $this->updateOrCreateLot($request, $procurement);
         }   
     }
 
-    private function addNewLots(Request $request, $procurement)
+    private function updateOrCreateLot(Request $request, $procurement)
     {
         $details = $request->details;
-        foreach ($details as $key => $value) {
-            if($value['offers_period_end_lot'])
-            $data = ProcurementsDeteil::create([
-                'offers_period_end_lot' => Carbon::parse($value['offers_period_end_lot'])->format('Y-m-d H:i'),
-                'auction_period_end_lot' => Carbon::parse($value['auction_period_end_lot'])->format('Y-m-d H:i'),
-                'procurement_id' => $procurement->id,
-            ]);                
-        }        
-    }
-
+        if(is_array($details)) {
+           foreach ($details as $value) {
+                $data = ProcurementsDeteil::updateOrCreate(
+                [
+                    'id' => $value['id'],
+                ],
+                [   
+                    'name' => $value['name'],
+                    'offers_period_end_lot' => Carbon::parse($value['offers_period_end_lot'])->format('Y-m-d H:i'),
+                    'auction_period_end_lot' => Carbon::parse($value['auction_period_end_lot'])->format('Y-m-d H:i'),
+                    'amount_lot' => $value['amount_lot'],
+                    'procurement_id' => $procurement->id,
+                ]); 
+            }
+        }
+                     
+    }        
 }

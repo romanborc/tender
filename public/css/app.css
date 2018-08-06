@@ -23589,8 +23589,9 @@ textarea {
 
 .amount {
   text-align: center;
-  font-size: 22px;
+  font-size: 23px;
   color: #33c15f;
+  font-weight: 100;
 }
 
 .edit {
@@ -23671,6 +23672,13 @@ textarea {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .remove {
   padding-left: 2px;
   color: #000000;
@@ -23678,5 +23686,99 @@ textarea {
 
 .add {
   color: #000000;
+}
+
+.help-block {
+  font-weight: 100;
+  font-size: 14px;
+  color: #ed4631;
+}
+
+.proc {
+  margin-bottom: 0rem;
+}
+
+.created_at {
+  color: #339af0;
+  font-size: 21px;
+  font-weight: 100;
+}
+
+.offers_period {
+  color: #22b14c;
+  font-size: 21px;
+  font-weight: 100;
+}
+
+.auction_period {
+  color: #ff7b36;
+  font-size: 21px;
+  font-weight: 100;
+}
+
+.id_procurement {
+  font-weight: 100;
+  font-size: 20px;
+}
+
+.lot {
+  margin-bottom: 1rem;
+}
+
+.show_lot_modal {
+  width: 100% !important;
+  display: none;
+}
+
+.results_by_lot {
+  width: 100% !important;
+  display: none;
+}
+
+.content_lot {
+  background-color: #fff;
+  height: 100%;
+  position: fixed;
+  right: -480px;
+  top: 0;
+  z-index: 2000;
+  width: 470px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  outline: 0 none;
+}
+
+.tree_lot {
+  overflow-y: auto;
+  position: absolute;
+  top: 71px;
+  right: 0;
+  left: 0;
+  bottom: 61px;
+}
+
+.lot-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 1rem;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+}
+
+.remove_lots_results {
+  margin-left: 2px;
+}
+
+.progress-bar .non_participation {
+  background-colo: #ed5565;
 }
 

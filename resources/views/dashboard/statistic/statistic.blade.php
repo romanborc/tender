@@ -2,147 +2,73 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
     <h2 class="h2">Панель Управления Администратора</h2>
 </div>
-<div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-lg-9 ">
+<div class="row wrapper white-bg page-heading">
+    <div class="col-lg-7 ">
         <h2>Статистика</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/admin">Главная</a></li>
             <li class="breadcrumb-item active" aria-current="page">Статистика</li>
         </ol>
     </div>
+    <div class="col-lg-5">
+         <form class="form-horizontal" method="get" action="/admin/filter">
+        <div class="row">
+            
+            <div class="col-sm-4">
+                <h3>Фильтер по дате</h3>
+            </div>
+            <div class="col-sm-3">
+                <input type="date" id="offers_period_from" name="offers_period_from" class="form-control input-datepicker" placeholder="c">
+            </div>
+            <div class="col-sm-3">
+                <input type="date" id="offers_period_to" name="offers_period_to" class="form-control input-datepicker" placeholder="по">
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-primary" type="submit">Фильтр</button>
+            </div>
+       
+        </div>
+         </form>
+    </div>
 </div>
-<div class="wrapper wrapper-content animated fadeInDown">
-    <div class="row">
-            <div class="col-lg-3">
-                <div class="widget style1">
-                        <div class="row">
-                            <div class="col-sm-4 text-center">
-                                <i class="fa fa-trophy fa-5x"></i>
-                            </div>
-                            <div class="col-sm-8 text-right">
-                                <span> Сегодня выиграли на сумму </span>
-                                <h2>&#8372; 4,232</h2>
-                            </div>
-                        </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="widget style1 lazur-bg">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <i class="fa fa-shopping-cart fa-5x"></i>
-                        </div>
-                        <div class="col-sm-8 text-right">
-                            <span> Сегодня торгов </span>
-                            <h2>26</h2>
-                        </div>
+<div class="table-responsive animated fadeInRight">
+    <table class="table table-bordered table-hover">
+        <tbody>
+            @foreach($userStatistics as $userStatistic)
+            <tr>
+                <td class="results-completion">
+                    <small>Менеджер</small>
+                    <div>{{ $userStatistic->lastname }}</div>
+                </td>
+                <td class="results-completion">
+                    <small>Процент не участия: {{ round(($userStatistic->non_participation/$userStatistic->proc_count)*100) }}% </small>
+                    <div class="progress progress-mini">
+                        <div style="width: {{ ($userStatistic->non_participation/$userStatistic->proc_count)*100 }}%;" class="progress-bar bg-warning"></div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="widget style1 navy-bg">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <i class="fa fa-check fa-5x"></i>
-                        </div>
-                        <div class="col-sm-8 text-right">
-                            <span> Сегодня выиграли торгов  </span>
-                            <h2>20</h2>
-                        </div>
+                </td>
+                <td class="results-completion">
+                    <small>Процент проигрыша: {{ round(($userStatistic->proc_losing/$userStatistic->proc_count)*100) }}%</small>
+                    <div class="progress progress-mini">
+                        <div style="width: {{ ($userStatistic->proc_losing / $userStatistic->proc_count)*100 }}%;" class="progress-bar bg-danger"></div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="widget style1 red-bg">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <i class="fa fa-times fa-5x"></i>
-                        </div>
-                        <div class="col-sm-8 text-right">
-                            <span> Сегодня проиграли торгов </span>
-                            <h2>6</h2>
-                        </div>
+                </td>
+                <td class="results-completion">
+                    <small>Процент выиграша: {{ round(($userStatistic->proc_wining/$userStatistic->proc_count)*100) }}%</small>
+                    <div class="progress progress-mini">
+                        <div style="width: {{ ($userStatistic->proc_wining / $userStatistic->proc_count)*100 }}%;" class="progress-bar bg-success"></div>
                     </div>
-                </div>
-            </div>
-        </div>
-    <div class="row">
-            <div class="col-lg-6">
-                <div class="widget navy-bg no-padding">
-                    <div class="p-m">
-                        <h1 class="m-xs">&#8372; 1 600,540</h1>
-
-                        <h3 class="font-bold no-margins">
-                            Сумма выигрыша за год
-                        </h3>
-                        <h5>ТОВ "Лизоформ Медикал"</h5>
-                        <button type="button" class="btn btn-outline btn-default">Подробней</button>
-                    </div>
-                    <div class="flot-chart">
-                        <div class="flot-chart-content" id="flot-chart1" style="padding: 0px; position: relative;"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="widget lazur-bg no-padding">
-                    <div class="p-m">
-                        <h1 class="m-xs">&#8372; 4 210,660</h1>
-
-                        <h3 class="font-bold no-margins">
-                            Сумма выигрыша за год
-                        </h3>
-                        <h5>ТОВ "Имед"</h5>
-                        <button type="button" class="btn btn-outline btn-default">Подробней</button>
-                    </div>
-                    <div class="flot-chart">
-                        <div class="flot-chart-content" id="flot-chart2" style="padding: 0px; position: relative;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <div class="row">
-                <div class="col-lg-4">
-                    <div class="widget style1 lazur-bg">
-                        <div class="row vertical-align">
-                            <div class="col-sm-2">
-                                <i class="fa fa-user fa-3x"></i>
-                            </div>
-                            <div class="col-sm-10 text-right">
-                                <h2>16</h2>
-                                <h4>Количество менеджеров</h4>
-                                <button type="button" class="btn btn-outline btn-default">Подробней</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="widget style1 navy-bg">
-                        <div class="row vertical-align">
-                            <div class="col-sm-3">
-                                <i class="fa fa-percent fa-3x"></i>
-                            </div>
-                            <div class="col-sm-9 text-right">
-                                <h2>65</h2>
-                                <h4>Побед за все время</h4>
-                                <button type="button" class="btn btn-outline btn-default">Подробней</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="widget style1 red-bg">
-                        <div class="row vertical-align">
-                            <div class="col-sm-3">
-                                <i class="fa fa-percent fa-3x"></i>
-                            </div>
-                            <div class="col-sm-9 text-right">
-                                <h2>10</h2>
-                                <h4>Не участия за все время</h4>
-                                <button type="button" class="btn btn-outline btn-default">Подробней</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>     
+                </td>
+                <td class="results-completion">
+                    <small>Участия: </small>
+                    <div>{{ $userStatistic->proc_count }}</div>
+                </td>
+                <td class="results-completion">
+                    <small>Сумма выиграша: </small>
+                    <div>{{ number_format($userStatistic->sum_total, 2,',', ' ') }}</div>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 @endsection

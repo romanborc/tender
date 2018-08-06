@@ -7,54 +7,54 @@
 <div class="row">
     <div class="col-lg-9">
         <div class="ibox-content">
-            <form class="form-horizontal lot" method="POST" action="/admin/procurements">
+            <form class="form-horizontal create">
                 {{ csrf_field() }}
-                <div class="form-group row {{ $errors->has('customer') ? ' has-error' : '' }}">
+                <div class="form-group row proc">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Заказчик</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" name="customer" placeholder="" value="{{ old('customer') }}" required> @if ($errors->has('firstname'))
+                        <input type="text" class="form-control" name="customer" id="customer" placeholder=""> 
                         <span class="help-block">
-                        <strong>{{ $errors->first('customer') }}</strong>
-                    </span> @endif
+                            <strong><p class="customer"></p></strong>
+                        </span>
                     </div>
                 </div>
-                <div class="form-group row {{ $errors->has('id_procurement') ? ' has-error' : '' }}">
+                <div class="form-group row proc">
                     <label class="col-sm-2 col-sm-2 control-label">ID Закупки</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" name="id_procurement" data-mask="aa-9999-99-99-999999-a" placeholder="" value="{{ old('id_procurement') }}"> @if ($errors->has('id_procurement'))
+                        <input type="text" class="form-control" name="id_procurement" data-mask="aa-9999-99-99-999999-a" placeholder="" value=""> 
                         <span class="help-block">
-                        <strong>{{ $errors->first('id_procurement') }}</strong>
-                    </span> @endif
+                            <strong><p class="id_procurement"></p></strong>
+                        </span>
                     </div>
                 </div>
-                <div class="form-group row {{ $errors->has('offers_period_end') ? ' has-error' : '' }}">
+                <div class="form-group row proc">
                     <label class="col-sm-2 col-sm-2 control-label">Подать до</label>
                     <div class="col-sm-8">
-                        <input type="datetime" class="form-control" name="offers_period_end" data-mask="99-99-9999 99:99" placeholder="" value="{{ old('offers_period_end') }}"> @if ($errors->has('offers_period_end'))
+                        <input type="datetime" class="form-control" name="offers_period_end" data-mask="99-99-9999 99:99" placeholder="" value=""> 
                         <span class="help-block">
-                        <strong>{{ $errors->first('offers_period_end') }}</strong>
-                    </span> @endif
+                            <strong><p class="offers_period_end"></p></strong>
+                        </span>
                     </div>
                 </div>
-                <div class="form-group row {{ $errors->has('auction_period_end') ? ' has-error' : '' }}">
+                <div class="form-group row proc">
                     <label class="col-sm-2 col-sm-2 control-label">Время аукциона</label>
                     <div class="col-sm-8">
-                        <input type="datetime" class="form-control" name="auction_period_end" data-mask="99-99-9999 99:99" placeholder="" value="{{ old('auction_period_end') }}"> @if ($errors->has('auction_period_end'))
+                        <input type="datetime" class="form-control" name="auction_period_end" data-mask="99-99-9999 99:99" placeholder="" value="">
                         <span class="help-block">
-                        <strong>{{ $errors->first('auction_period_end') }}</strong>
-                    </span> @endif
+                            <strong><p class="auction_period_end"></p></strong>
+                        </span>
                     </div>
                 </div>
-                <div class="form-group row {{ $errors->has('amount') ? ' has-error' : '' }}">
+                <div class="form-group row proc">
                     <label class="col-sm-2 col-sm-2 control-label">Ожидаемая стоимость</label>
                     <div class="col-sm-8">
-                        <input type="number" step="any" class="form-control" name="amount" placeholder="" value="{{ old('amount') }}"> @if ($errors->has('amount'))
+                        <input type="number" step="any" class="form-control" name="amount" placeholder="" value=""> 
                         <span class="help-block">
-                        <strong>{{ $errors->first('amount') }}</strong>
-                    </span> @endif
+                            <strong><p class="amounts"></p></strong>
+                        </span>
                     </div>
                 </div>
-                <div class="form-group row {{ $errors->has('users_id') ? ' has-error' : '' }}">
+                <div class="form-group row proc">
                     <label class="col-sm-2 col-sm-2 control-label">Ответственный Менеджер</label>
                     <div class="col-sm-8">
                         <select class="form-control" name="users_id" id="users_id">
@@ -65,13 +65,12 @@
                             </option>
                             @endforeach
                         </select>
-                        @if ($errors->has('users_id'))
                         <span class="help-block">
-                        <strong>{{ $errors->first('users_id') }}</strong>
-                    </span> @endif
+                            <strong><p class="users_id"></p></strong>
+                        </span>
                     </div>
                 </div>
-                <div class="form-group row {{ $errors->has('subjects_id') ? ' has-error' : '' }}">
+                <div class="form-group row proc">
                     <label class="col-sm-2 col-sm-2 control-label">Предмет Закупки</label>
                     <div class="col-sm-8">
                         <select class="form-control" name="subjects_id" id="subjects_id">
@@ -81,13 +80,12 @@
                             </option>
                             @endforeach
                         </select>
-                        @if ($errors->has('subjects_id'))
                         <span class="help-block">
-                        <strong>{{ $errors->first('subjects_id') }}</strong>
-                    </span> @endif
+                            <strong><p class="subjects_id"></p></strong>
+                        </span>
                     </div>
                 </div>
-                <div class="form-group row {{ $errors->has('types_id') ? ' has-error' : '' }}">
+                <div class="form-group row proc">
                     <label class="col-sm-2 col-sm-2 control-label">Тип Закупки</label>
                     <div class="col-sm-8">
                         <select class="form-control" name="types_id" id="types_id">
@@ -97,36 +95,49 @@
                             </option>
                             @endforeach
                         </select>
-                        @if ($errors->has('types_id'))
                         <span class="help-block">
-                        <strong>{{ $errors->first('types_id') }}</strong>
-                    </span> @endif
+                            <strong><p class="types_id"></p></strong>
+                        </span>
                     </div>
                 </div>
-                <div class="form-group row {{ $errors->has('identifier') ? ' has-error' : '' }}">
+                <div class="form-group row proc">
                     <label class="col-sm-2 col-sm-2 control-label">Код ЕДРПО</label>
                     <div class="col-sm-8">
-                        <input type="number" class="form-control" name="identifier" placeholder="" value="{{ old('identifier') }}"> @if ($errors->has('identifier'))
+                        <input type="number" class="form-control" name="identifier" placeholder="" value="">
                         <span class="help-block">
-                        <strong>{{ $errors->first('identifier') }}</strong>
-                    </span> @endif
+                            <strong><p class="identifier"></p></strong>
+                        </span>
                     </div>
                 </div>
-                <div class="form-group row {{ $errors->has('description') ? ' has-error' : '' }}">
+                <div class="form-group row proc">
+                    <label class="col-sm-2 col-sm-2 control-label">Статус</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" name="statuses_id" id="statuses_id">
+                            @foreach($statuses as $status)
+                            <option value="{{ $status->id }}">
+                                {{ $status->status }}
+                            </option>
+                            @endforeach
+                        </select>
+                        <span class="help-block">
+                            <strong><p class="statuses_id"></p></strong>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group row proc">
                     <label class="col-sm-2 col-sm-2 control-label">Описание</label>
                     <div class="col-md-8">
-                        <textarea class="form-control" name="description" id="description" placeholder="" value="{{ old('description') }}"></textarea>
-                        @if ($errors->has('description'))
+                        <textarea class="form-control" name="description" id="description" placeholder="" value=""></textarea>
                         <span class="help-block">
-                        <strong>{{ $errors->first('description') }}</strong>
-                    </span> @endif
+                            <strong><p class="description"></p></strong>
+                        </span>
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-2">
                         <a href="/admin" class="btn btn-white">Назад</a>
-                        <button class="btn btn-primary" type="submit">+Добавить Закупку</button>
+                        <a href="#" class="btn btn-primary createProcurements">+Добавить Закупку</a>
                     </div>
                 </div>
                 <div class="create_lot">
@@ -137,25 +148,29 @@
                         <div class="ibox-content tree">
                             <div class="row">
                                 <div class="col-lg-11">
-                                    <div class="title">
-                                        <h1>Лот №1</h1>
-                                    </div>
-                                    <div class="form-group row clone_block {{ $errors->has('offers_period_end') ? ' has-error' : '' }}">
-                                        <label class="col-sm-4 control-label">Подать до</label>
+                                    <input type="hidden" name="details[0][id]">
+                                    <div class="form-group row lot">
+                                        <label class="col-sm-4 control-label">Название</label>
                                         <div class="col-sm-8">
-                                            <input type="datetime" class="form-control" name="details[0][offers_period_end_lot]" data-mask="99-99-9999 99:99" placeholder="" value="{{ old('offers_period_end_lot') }}"> @if ($errors->has('offers_period_end'))
-                                            <span class="help-block">
-                            <strong>{{ $errors->first('offers_period_end') }}</strong>
-                        </span> @endif
+                                            <input type="text" class="form-control" name="details[0][name]" placeholder="" value="">
                                         </div>
                                     </div>
-                                    <div class="form-group row clone_block {{ $errors->has('auction_period_end') ? ' has-error' : '' }}">
+                                    <div class="form-group row lot">
+                                        <label class="col-sm-4 control-label">Подать до</label>
+                                        <div class="col-sm-8">
+                                            <input type="datetime" class="form-control" name="details[0][offers_period_end_lot]" data-mask="99-99-9999 99:99" placeholder="" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row lot">
                                         <label class="col-sm-4 control-label">Время аукциона</label>
                                         <div class="col-sm-8">
-                                            <input type="datetime" class="form-control" name="details[0][auction_period_end_lot]" data-mask="99-99-9999 99:99" placeholder="" value="{{ old('auction_period_end_lot') }}"> @if ($errors->has('auction_period_end'))
-                                            <span class="help-block">
-                            <strong>{{ $errors->first('auction_period_end') }}</strong>
-                        </span> @endif
+                                            <input type="datetime" class="form-control" name="details[0][auction_period_end_lot]" data-mask="99-99-9999 99:99" placeholder="" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row lot">
+                                        <label class="col-sm-4 control-label">Сумма Лота</label>
+                                        <div class="col-sm-8">
+                                            <input type="number" step="any" class="form-control" name="details[0][amount_lot]" placeholder="" value=""> 
                                         </div>
                                     </div>
                                 </div>
@@ -163,7 +178,7 @@
                                     <a href="#" class="add"><i class="fas fa-plus fa-2x"></i></a>
                                 </div>
                             </div>
-                            <div class="hr-lot"></div>
+                            <div class="hr"></div>
                         </div>
                         <div class="create_lot_footer">
                             <a href="#" class="btn-lot-secondary back">Закрыть</a>
@@ -175,7 +190,7 @@
         </div>
     </div>
     <div class="col-lg-3">
-        <a href="#" class="btn btn-outline btn-default add_lot">+Добавить Лот</a>
+        <a href="#" class="btn btn btn-info add_lot">+Добавить Лот</a>
     </div>
 </div>
 @endsection

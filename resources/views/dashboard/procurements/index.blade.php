@@ -38,24 +38,27 @@
                         </a>
                     </div>
                     <p class="customer">{{ $procurement->customer }}</p>
-                    <p class="badge badge-info">{{ $procurement->types->type }} </p>
+                    <p class="{{ ($procurement->types_id == 3 || $procurement->types_id == 4) ? 'badge badge-danger' : 'badge badge-info' }}">{{ $procurement->types->type }} </p>
                     <p class="badge badge-info">
-                        @if($procurement->users) {{ $procurement->users->lastname }} @else Не назначена
+                        @if($procurement->users) 
+                            {{ $procurement->users->lastname }} 
+                        @else 
+                            Не назначена
                     </p>
-                    @endif
-                    <h3 id="statuses_id" class="{{ $procurement->statuses_id == 1 ? 'badge badge-primary' : 'badge badge-danger' }}">{{ $procurement->statuses->status }}
-                    </h3>
+                        @endif
+                    <p id="statuses_id" class="{{ $procurement->statuses_id == 1 ? 'badge badge-primary' : 'badge badge-danger' }}">{{ $procurement->statuses->status }}
+                    </p>
                 </td>
                 <td class="col-sm-2">
                     <p class="amount">{{ number_format($procurement->amount, 2,',', ' ') }}</p>
                 </td>
                 <td class="col-sm-2">
-                    <h3>Добавлена: </h3>
-                    <p>{{ $procurement->created_at }}</p>
-                    <h3>Прием предложений до:</h3>
-                    <p>{{ $procurement->offers_period_end }}</p>
-                    <h3>Аукцион:</h3>
-                    <p>{{ $procurement->auction_period_end }}</p>
+                    <h3>Добавлена: <p class="created_at">{{ Carbon\Carbon::parse($procurement->created_at)->format('d-m-Y H:i') }}</p></h3>
+                    
+                    <h3>Прием предложений до: <p class="offers_period">{{ Carbon\Carbon::parse($procurement->offers_period_end)->format('d-m-Y H:i') }}</p></h3>
+                    
+                    <h3>Аукцион: <p class="auction_period">{{ Carbon\Carbon::parse($procurement->auction_period_end)->format('d-m-Y H:i') }}</p></h3>
+                    
                 </td>
                 <td class="col-sm-2">
                     <div>
@@ -77,14 +80,8 @@
                 </td>
                 <td class="col-sm-2 results" data-id="{{ $procurement->id }}">
                     @foreach($procurement->results as $result)
-                    <h3>Результат :</h3>
-                    <p class="result">{{ $result->results }}</p>
-                    <!--<h3>Выиграл по цене :</h3>
-                    <p class="participant">{{ $result->wonByPrice->name }}</p>
-                    -->
-                    <h3>Выиграл Закупку</h3>
-                    <p class="participant">{{ $result->winners->name }}</p>
-                    
+                    <h3>Результат : {{ $loop->iteration }}</h3>
+                    <p class="result">{{ $result->results }}</p>                    
                     @endforeach
                 </td>
             </tr>

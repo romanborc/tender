@@ -90,6 +90,36 @@ class SearchController extends Controller
         ]); 
     }
 
+    public function filterStatistic(Request $request, Procurement $userStatistics) {
+        
+        if ($request->filled('offers_period_from') && $request->filled('offers_period_to')<>'')
+        {    
+            $start = date("Y-m-d",strtotime($request->input('offers_period_from')));
+            $end = date("Y-m-d",strtotime($request->input('offers_period_to')."+1 day"));
+            
+            $userStatistics = Procurement::leftjoin('users', 'procurements.users_id', 'users.id')
+            ->leftjoin('results', 'results.procurement_id', 'procurements.id')
+            ->selectRaw('users.*, count(procurements.id) as proc_count, 
+                sum(procurements.statuses_id = 2) as non_participation, 
+                sum(procurements.statuses_id = 1) as participate,
+                sum(case when results.statuses_id = 1 then  results.winner_amount  else 0 end) as sum_total,
+                sum(results.statuses_id = 1) as proc_wining,
+                sum(results.statuses_id = 2) as proc_losing
+                ')
+            ->whereBetween('procurements.auction_period_end',[$start,$end])
+            ->groupBy('users.id')
+          
+            
+            ->get();
+        
+        }
+
+        return view('dashboard.statistic.statistic', ['userStatistics' => $userStatistics]);
+
+
+    }
+
+
     public function searchParticipants (Request $request)
     {
        	$results = Participant::where('name', 'LIKE', '%' .request('results')."%")->get();
